@@ -1,12 +1,58 @@
-# React + Vite
+# My Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern portfolio website built with React, Vite, and Three.js featuring 3D animations and responsive design.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite
+- Three.js + React Three Fiber
+- GSAP animations
+- Tailwind CSS
+- EmailJS
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Clone the repository
+git clone https://github.com/BaverYldz/My-Portfolio.git
+cd My-Portfolio
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Visit `http://localhost:5173` to view the portfolio.
+
+## Scripts
+
+- `npm run dev` - Development server
+- `npm run build` - Production build
+- `npm run preview` - Preview build
+- `npm run lint` - Lint code
+
+## Project Structure
+
+```
+src/
+├── components/     # UI components
+├── sections/       # Page sections
+├── constants/      # App data
+├── hooks/         # Custom hooks
+└── App.jsx        # Main component
+```
+
+## Deployment
+
+Build the project:
+```bash
+npm run build
+```
+
+Deploy the `dist/` folder to your preferred hosting service (Vercel, Netlify, etc.).
+
+## License
+
+MIT License
