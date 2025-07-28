@@ -93,52 +93,42 @@ const techStackImgs = [
     {
         name: "React",
         imgPath: "/images/logos/react.png",
-        webpPath: "/images/logos/react.webp",
     },
     {
         name: "Python",
         imgPath: "/images/logos/python.svg",
-        webpPath: "/images/logos/python.webp",
     },
     {
         name: "Node.js",
         imgPath: "/images/logos/node.png",
-        webpPath: "/images/logos/node.webp",
     },
     {
         name: "Three.js",
         imgPath: "/images/logos/three.png",
-        webpPath: "/images/logos/three.webp",
     },
     {
         name: "Git",
         imgPath: "/images/logos/git.svg",
-        webpPath: "/images/logos/git.webp",
     },
     {
         name: "Angular",
         imgPath: "/images/logos/angular2.png",
-        webpPath: "/images/logos/angular2.webp",
     },
     {
         name: ".NET",
         imgPath: "/images/logos/.Net.png",
-        webpPath: "/images/logos/.Net.webp",
     },
     {
         name: "C#",
         imgPath: "/images/logos/CSharp.png",
-        webpPath: "/images/logos/CSharp.webp",
     },
     {
         name: "TypeScript",
         imgPath: "/images/logos/typescript.png",
-        webpPath: "/images/logos/typescript.webp",
     },
     {
         name: "Docker",
         imgPath: "/images/logos/docker.png",
-        webpPath: "/images/logos/docker.webp",
     },
 
 ];
