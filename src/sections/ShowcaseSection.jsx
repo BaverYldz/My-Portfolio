@@ -27,9 +27,9 @@ const AppShowcase = memo(() => {
                     y: 0,
                     opacity: 1,
                     duration: 1,
-                    delay: 0.3 * (index + 1),
+                    delay: 0.1 * (index + 1),
                     scrollTrigger: {
-                        trigger: card, 
+                        trigger: card,
                         start: "top bottom-=100",
                         once: true, // Only animate once
                     },
@@ -44,8 +44,8 @@ const AppShowcase = memo(() => {
                 <div className="showcaselayout">
                     <div ref={rydeRef} className="first-project-wrapper">
                         <div className="image-wrapper">
-                            <OptimizedImage 
-                                src="/images/project_1.png" 
+                            <OptimizedImage
+                                src="/images/project_1.png"
                                 alt="Ryde App Interface"
                                 className="w-full h-full object-cover rounded-xl absolute inset-0"
                             />
@@ -75,8 +75,8 @@ const AppShowcase = memo(() => {
 
                         <div className="project" ref={ycDirectoryRef}>
                             <div className="image-wrapper bg-[#F0F8FF]">
-                                <OptimizedImage 
-                                    src="/images/project_3.png" 
+                                <OptimizedImage
+                                    src="/images/project_3.png"
                                     alt="YC Directory App"
                                     className="w-full h-full object-contain rounded-xl"
                                 />
