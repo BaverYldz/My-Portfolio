@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { memo, lazy, Suspense } from 'react'
 import { words } from '../constants'
 import Button from '../components/Button'
-import HeroExperience from '../components/HeroModels/HeroExperience'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import AnimatedCounter from '../components/AnimatedCounter'
 
+// Lazy load the heavy 3D component
+const HeroExperience = lazy(() => import('../components/HeroModels/HeroExperience'))
 
-const Hero = () => {
+const Hero = memo(() => {
     useGSAP(() => {
         gsap.fromTo(
             ".hero-text h1",
@@ -15,6 +16,7 @@ const Hero = () => {
             { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
         );
     });
+    
     return (
         <section id='hero' className='relative overflow-hidden'>
             <div className='absolute top-0 left-0 z-10'>
@@ -63,8 +65,14 @@ const Hero = () => {
 
                 {/* Right Section */}
                 <figure>
-                    <div className='hero-3d-layout '>
-                        <HeroExperience />
+                    <div className='hero-3d-layout'>
+                        <Suspense fallback={
+                            <div className="w-full h-full flex items-center justify-center">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                            </div>
+                        }>
+                            <HeroExperience />
+                        </Suspense>
                     </div>
                 </figure>
             </div>
@@ -72,6 +80,8 @@ const Hero = () => {
             <AnimatedCounter />
         </section>
     )
-}
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero

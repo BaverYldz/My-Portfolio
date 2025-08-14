@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, lazy, Suspense } from 'react'
 import TitleHeader from '../components/TitleHeader'
-import ContactExperience from '../components/ContactExperience'
 import emailjs from '@emailjs/browser'
+
+// Lazy load the heavy 3D component
+const ContactExperience = lazy(() => import('../components/ContactExperience'))
 
 const Contact = () => {
     const formRef = useRef(null);
@@ -129,7 +131,13 @@ const Contact = () => {
                     </div>
                     <div className="xl:col-span-7 min-h-96">
                         <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-                            <ContactExperience />
+                            <Suspense fallback={
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                                </div>
+                            }>
+                                <ContactExperience />
+                            </Suspense>
                         </div>
                     </div>
                 </div>
