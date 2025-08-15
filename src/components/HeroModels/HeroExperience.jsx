@@ -5,8 +5,8 @@ import { useMediaQuery } from 'react-responsive';
 import { Room } from './Room'
 import HeroLights from './HeroLights';
 import { usePerformance } from '../../hooks/usePerformance';
+import Particles from './Particles';
 
-// Loading fallback component
 const CanvasLoader = () => (
     <div className="w-full h-full flex items-center justify-center bg-black/20">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
@@ -18,16 +18,16 @@ const HeroExperience = memo(() => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const { isLowPerformance } = usePerformance();
 
-    // Reduce quality for low-performance devices
+
     const pixelRatio = isLowPerformance ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio;
 
     return (
-        <Canvas 
-            camera={{ position: [0, 0, 15], fov: 45 }} 
+        <Canvas
+            camera={{ position: [0, 0, 15], fov: 45 }}
             className='hover:cursor-grab'
             dpr={pixelRatio}
             performance={{ min: 0.5 }}
-            gl={{ 
+            gl={{
                 antialias: !isLowPerformance,
                 alpha: false,
                 powerPreference: "high-performance"
@@ -44,9 +44,13 @@ const HeroExperience = memo(() => {
                     enableDamping
                     dampingFactor={0.05}
                 />
-                
+
                 {!isLowPerformance && <HeroLights />}
-                
+
+                <Suspense fallback={null}>
+                    <Particles count={isLowPerformance ? 100 : 200} />
+                </Suspense>
+
                 <group
                     scale={isMobile ? 0.7 : 1}
                     position={[0, -3.5, 0]}
