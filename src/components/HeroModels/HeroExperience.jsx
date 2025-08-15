@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Room } from './Room'
 import HeroLights from './HeroLights';
 import { usePerformance } from '../../hooks/usePerformance';
-import Particles from './Particles';
+
 
 const CanvasLoader = () => (
     <div className="w-full h-full flex items-center justify-center bg-black/20">
@@ -47,9 +47,6 @@ const HeroExperience = memo(() => {
 
                 {!isLowPerformance && <HeroLights />}
 
-                <Suspense fallback={null}>
-                    <Particles count={isLowPerformance ? 100 : 200} />
-                </Suspense>
 
                 <group
                     scale={isMobile ? 0.7 : 1}
