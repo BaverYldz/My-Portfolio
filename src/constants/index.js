@@ -130,6 +130,18 @@ const techStackImgs = [
         name: "Docker",
         imgPath: "/images/logos/docker.png",
     },
+    {
+        name: "NextJS",
+        imgPath: "/images/logos/nextJS.png",
+    },
+    {
+        name: "mongoDB",
+        imgPath: "/images/logos/mongodb.png",
+    },
+    {
+        name: "Tailwind",
+        imgPath: "/images/logos/tailwind.png",
+    },
 
 ];
 
