@@ -42,15 +42,23 @@ export function Room(props) {
     color: "#000",
   });
 
+  //Monitor Glow part
+  const monitorScreenMaterial = new THREE.MeshStandardMaterial({
+    color: "#f0f8ff",
+    emissive: "#e6f2ff",
+    emissiveIntensity: 1.2,
+  });
+
   return (
     <group {...props} dispose={null}>
       <EffectComposer>
         <SelectiveBloom
           selection={screensRef}
-          intensity={1.5} // Strength of the bloom
-          luminanceThreshold={0.2} // Minimum luminance needed
-          luminanceSmoothing={0.9} // Smooth transition
-          blendFunction={BlendFunction.ADD} // How it blends
+          intensity={1.8}
+          luminanceThreshold={0.3}
+          luminanceSmoothing={0.6}
+          radius={0.3}
+          blendFunction={BlendFunction.ADD}
         />
       </EffectComposer>
       <mesh
@@ -67,7 +75,7 @@ export function Room(props) {
       <mesh
         ref={screensRef}
         geometry={nodes.emis_lambert1_0.geometry}
-        material={materials.lambert1}
+        material={monitorScreenMaterial}
       />
       <mesh
         geometry={nodes.handls_blinn1_0.geometry}

@@ -4,6 +4,7 @@ import React, { memo, Suspense } from 'react'
 import { useMediaQuery } from 'react-responsive';
 import { Room } from './Room'
 import HeroLights from './HeroLights';
+import Particles from './Particles';
 import { usePerformance } from '../../hooks/usePerformance';
 
 
@@ -47,6 +48,8 @@ const HeroExperience = memo(() => {
 
                 {!isLowPerformance && <HeroLights />}
 
+                {/* Particles effect - only for better performance devices */}
+                {!isLowPerformance && <Particles count={150} />}
 
                 <group
                     scale={isMobile ? 0.7 : 1}
