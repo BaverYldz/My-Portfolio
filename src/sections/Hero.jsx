@@ -16,7 +16,7 @@ const Hero = memo(() => {
             { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
         );
     });
-    
+
     return (
         <section id='hero' className='relative overflow-hidden'>
             <div className='absolute top-0 left-0 z-10'>
@@ -66,11 +66,7 @@ const Hero = memo(() => {
                 {/* Right Section */}
                 <figure>
                     <div className='hero-3d-layout'>
-                        <Suspense fallback={
-                            <div className="w-full h-full flex items-center justify-center">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-                            </div>
-                        }>
+                        <Suspense >
                             <HeroExperience />
                         </Suspense>
                     </div>
