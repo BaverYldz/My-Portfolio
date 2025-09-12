@@ -6,22 +6,16 @@ import { techStackImgs } from '../constants/index'
 import OptimizedImage from '../components/OptimizedImage'
 
 const TechStackCard = memo(({ techStackIcon }) => (
-    <div
-        className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
-    >
-        <div className="tech-card-animated-bg" />
-        <div className="tech-card-content">
-            <div className="tech-icon-wrapper">
-                <OptimizedImage 
-                    src={techStackIcon.imgPath} 
-                    alt={techStackIcon.name}
-                    className="w-full h-full object-contain"
-                />
-            </div>
-            <div className="padding-x w-full">
-                <p>{techStackIcon.name}</p>
-            </div>
+    <div className="tech-card-simple">
+        <div className="tech-icon-simple">
+            <OptimizedImage
+                src={techStackIcon.imgPath}
+                alt={techStackIcon.name}
+                className="w-8 h-8 object-contain"
+                loading="lazy"
+            />
         </div>
+        <span className="tech-name-simple">{techStackIcon.name}</span>
     </div>
 ));
 
@@ -29,31 +23,34 @@ TechStackCard.displayName = 'TechStackCard';
 
 const TechStack = memo(() => {
     useGSAP(() => {
-        gsap.fromTo('.tech-card', { y: 50, opacity: 0 }, {
-            y: 20, 
-            opacity: 1, 
-            duration: 0.5, 
-            ease: 'power2.inOut', 
-            stagger: 0.1, 
-            scrollTrigger: {
-                trigger: '#skills', 
-                start: 'top center',
-                once: true, // Only animate once
+        gsap.fromTo('.tech-card-simple',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: '#skills',
+                    start: 'top 70%',
+                    once: true,
+                }
             }
-        })
-    })
+        );
+    }, []);
 
     return (
-        <div id='skills' className='flex-center section-padding'>
-            <div className='w-full h-full md:px-10 px-5'>
+        <div id='skills' className='section-padding flex-center'>
+            <div className='w-full max-w-6xl mx-auto px-5 md:px-10'>
                 <TitleHeader
-                    title="My Preferred Tech Stack"
-                    sub="🤝 The Skills I Bring to the Table" 
+                    title="Tech Stack"
+                    sub="Technologies I work with"
                 />
 
-                <div className='tech-grid'>
+                <div className='tech-grid-simple mt-12'>
                     {techStackImgs.map((techStackIcon) => (
-                        <TechStackCard 
+                        <TechStackCard
                             key={techStackIcon.name}
                             techStackIcon={techStackIcon}
                         />

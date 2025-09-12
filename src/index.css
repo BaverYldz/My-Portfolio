@@ -257,24 +257,21 @@ section {
     @apply w-36 h-full absolute bottom-0 z-20;
   }
 
-  .tech-card-animated-bg {
-    @apply absolute left-0 bottom-[-100%] w-full h-full bg-[#2D3240] group-hover:bottom-0 transition-all duration-700;
+  /* Simple Tech Stack Styles */
+  .tech-grid-simple {
+    @apply flex flex-wrap justify-center gap-4 md:gap-6;
   }
 
-  .tech-card-content {
-    @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
-
-    & p {
-      @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white-50 text-center;
-    }
+  .tech-card-simple {
+    @apply flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105;
   }
 
-  .tech-grid {
-    @apply grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16;
+  .tech-icon-simple {
+    @apply flex items-center justify-center w-8 h-8 shrink-0;
   }
 
-  .tech-icon-wrapper {
-    @apply flex justify-center items-center w-52 h-60 relative;
+  .tech-name-simple {
+    @apply text-sm font-medium text-white/80 whitespace-nowrap;
   }
 
   form {
