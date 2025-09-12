@@ -58,6 +58,8 @@ const TechStack = memo(() => {
                 </div>
             </div>
         </div>
+
+
     )
 });
 

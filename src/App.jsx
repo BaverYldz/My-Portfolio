@@ -9,12 +9,13 @@ const ExperienceSection = lazy(() => import("./sections/ExperienceSection"))
 const TechStack = lazy(() => import("./sections/TechStack"))
 const Contact = lazy(() => import('./sections/Contact'))
 const Footer = lazy(() => import("./sections/Footer"))
+const Resume = lazy(() => import("./sections/Resume"))
 
 // Loading component
 const SectionLoader = () => (
-  <div className="flex-center py-20">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-  </div>
+    <div className="flex-center py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+    </div>
 )
 
 const App = () => {
@@ -28,11 +29,15 @@ const App = () => {
             <Suspense fallback={<SectionLoader />}>
                 <FeatureCards />
             </Suspense>
+
             <Suspense fallback={<SectionLoader />}>
                 <ExperienceSection />
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
                 <TechStack />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+                <Resume />
             </Suspense>
             <Suspense fallback={<SectionLoader />}>
                 <Contact />

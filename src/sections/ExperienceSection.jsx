@@ -15,9 +15,9 @@ const ExperienceCard = memo(({ card }) => (
         <div className="xl:w-2/6">
             <GlowCard card={card}>
                 <div>
-                    <OptimizedImage 
-                        src={card.imgPath} 
-                        alt="exp-img" 
+                    <OptimizedImage
+                        src={card.imgPath}
+                        alt="exp-img"
                         style={{ width: '120px', height: 'auto' }}
                         className="object-contain"
                     />
@@ -32,9 +32,9 @@ const ExperienceCard = memo(({ card }) => (
                 </div>
                 <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
                     <div className="timeline-logo">
-                        <OptimizedImage 
-                            src={card.logoPath} 
-                            alt="logo" 
+                        <OptimizedImage
+                            src={card.logoPath}
+                            alt="logo"
                             style={{ width: 'auto', height: '50px' }}
                             className="object-contain"
                         />

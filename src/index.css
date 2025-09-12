@@ -12,6 +12,8 @@ body {
   background-color: black;
   color: white;
   scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+  /* Accounts for navbar height */
   font-family: "Mona Sans", sans-serif;
 }
 

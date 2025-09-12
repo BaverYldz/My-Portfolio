@@ -19,10 +19,43 @@ const NavBar = () => {
         }
     }, [])
 
+    const handleNavClick = (e, link) => {
+        e.preventDefault();
+
+        const targetId = link.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            // Calculate navbar height dynamically
+            const navbar = document.querySelector('.navbar');
+            const navbarHeight = navbar ? navbar.offsetHeight : 80;
+
+            // Add extra offset for better spacing (20px buffer)
+            const offset = navbarHeight + 20;
+
+            const targetPosition = targetElement.offsetTop - offset;
+
+            window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: 'smooth'
+            });
+        } else {
+            // Fallback: scroll to top if element not found
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     return (
         <header className={`navbar ${scrolled ? 'scrolled' : 'not-scrolled'}`}>
             <div className="inner">
-                <a href="#hero" className="logo">
+                <a
+                    href="#hero"
+                    className="logo"
+                    onClick={(e) => handleNavClick(e, '#hero')}
+                >
                     Bawer | YLZ
                 </a>
 
@@ -30,7 +63,10 @@ const NavBar = () => {
                     <ul>
                         {navLinks.map(({ link, name }) => (
                             <li key={name} className="group">
-                                <a href={link}>
+                                <a
+                                    href={link}
+                                    onClick={(e) => handleNavClick(e, link)}
+                                >
                                     <span>{name}</span>
                                     <span className="underline" />
                                 </a>
@@ -39,7 +75,11 @@ const NavBar = () => {
                     </ul>
                 </nav>
 
-                <a href="#contact" className="contact-btn group">
+                <a
+                    href="#contact"
+                    className="contact-btn group"
+                    onClick={(e) => handleNavClick(e, '#contact')}
+                >
                     <div className="inner">
                         <span>Contact me</span>
                     </div>
