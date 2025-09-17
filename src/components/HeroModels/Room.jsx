@@ -7,43 +7,43 @@ import React, { useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
-import * as THREE from "three";
+import { MeshPhongMaterial, MeshStandardMaterial } from "three";
 
 export function Room(props) {
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
   const screensRef = useRef();
   const matcapTexture = useTexture("/images/textures/mat1.png");
 
-  const curtainMaterial = new THREE.MeshPhongMaterial({
+  const curtainMaterial = new MeshPhongMaterial({
     color: "#d90429",
   });
 
-  const bodyMaterial = new THREE.MeshPhongMaterial({
+  const bodyMaterial = new MeshPhongMaterial({
     map: matcapTexture,
   });
 
-  const tableMaterial = new THREE.MeshPhongMaterial({
+  const tableMaterial = new MeshPhongMaterial({
     color: "#582f0e",
   });
 
-  const radiatorMaterial = new THREE.MeshPhongMaterial({
+  const radiatorMaterial = new MeshPhongMaterial({
     color: "#fff",
   });
 
-  const compMaterial = new THREE.MeshStandardMaterial({
+  const compMaterial = new MeshStandardMaterial({
     color: "#fff",
   });
 
-  const pillowMaterial = new THREE.MeshPhongMaterial({
+  const pillowMaterial = new MeshPhongMaterial({
     color: "#8338ec",
   });
 
-  const chairMaterial = new THREE.MeshPhongMaterial({
+  const chairMaterial = new MeshPhongMaterial({
     color: "#000",
   });
 
   //Monitor Glow part
-  const monitorScreenMaterial = new THREE.MeshStandardMaterial({
+  const monitorScreenMaterial = new MeshStandardMaterial({
     color: "#f0f8ff",
     emissive: "#e6f2ff",
     emissiveIntensity: 1.2,
