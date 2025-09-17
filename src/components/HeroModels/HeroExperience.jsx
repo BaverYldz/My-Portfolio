@@ -1,6 +1,6 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import React, { memo, Suspense } from 'react'
+import React, { memo, Suspense, useState, useRef, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive';
 import { Room } from './Room'
 import HeroLights from './HeroLights';
@@ -15,25 +15,49 @@ const CanvasLoader = () => (
 );
 
 const HeroExperience = memo(() => {
+    const [isVisible, setIsVisible] = useState(true); // Hero always visible initially
+    const canvasRef = useRef(null);
     const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const { isLowPerformance } = usePerformance();
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting || entry.intersectionRatio > 0.1);
+            },
+            { threshold: 0.1 }
+        );
+
+        const currentRef = canvasRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, []);
 
     const pixelRatio = isLowPerformance ? Math.min(window.devicePixelRatio, 1.5) : window.devicePixelRatio;
 
     return (
-        <Canvas
-            camera={{ position: [0, 0, 15], fov: 45 }}
-            className='hover:cursor-grab'
-            dpr={pixelRatio}
-            performance={{ min: 0.5 }}
-            gl={{
-                antialias: !isLowPerformance,
-                alpha: false,
-                powerPreference: "high-performance"
-            }}
-        >
+        <div ref={canvasRef} className="w-full h-full">
+            <Canvas
+                camera={{ position: [0, 0, 15], fov: 45 }}
+                className='hover:cursor-grab'
+                dpr={pixelRatio}
+                performance={{ min: 0.5 }}
+                frameloop={isVisible ? 'always' : 'never'}
+                gl={{
+                    antialias: !isLowPerformance,
+                    alpha: false,
+                    powerPreference: "high-performance",
+                    preserveDrawingBuffer: false
+                }}
+            >
             <Suspense fallback={null}>
                 <OrbitControls
                     enablePan={false}
@@ -60,6 +84,7 @@ const HeroExperience = memo(() => {
                 </group>
             </Suspense>
         </Canvas>
+        </div>
     )
 });
 

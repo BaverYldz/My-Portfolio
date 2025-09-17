@@ -473,3 +473,88 @@ section {
 .card:hover::before {
   opacity: 1;
 }
+
+/* ================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================ */
+
+/* Hardware acceleration for smooth animations */
+.hero-3d-layout,
+.hero-layout,
+section,
+canvas {
+  transform: translateZ(0);
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Optimize scroll performance */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scrolling with hardware acceleration */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+/* Optimize 3D transforms */
+.hover\:cursor-grab {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .hero-3d-layout,
+  canvas {
+    will-change: auto;
+    transform: none;
+  }
+}
+
+/* Performance for mobile devices */
+@media (max-width: 768px) {
+  .hero-3d-layout,
+  canvas {
+    will-change: auto;
+    transform: translateZ(0);
+  }
+  
+  /* Reduce complexity on mobile */
+  .animate-spin {
+    animation-duration: 2s;
+  }
+}
+
+/* GPU acceleration for critical elements */
+.section-padding,
+.grid-12-cols,
+.hero-layout,
+.card-border {
+  transform: translateZ(0);
+  contain: layout;
+}
