@@ -9,59 +9,23 @@ export default defineConfig({
     tailwindcss(),
   ],
   build: {
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: false, // Keep console for debugging
-        drop_debugger: true,
-        pure_funcs: ['console.log'],
-        passes: 1, // Reduce passes to prevent over-optimization
-      },
-      mangle: {
-        toplevel: false, // Disable toplevel mangling for Three.js compatibility
-        keep_fnames: true, // Keep function names for Three.js
-      },
-    },
+    minify: 'esbuild', // Switch to esbuild for better React compatibility
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // React ve DOM ayrı chunk
-          if (id.includes('react') || id.includes('react-dom')) {
-            return 'react-vendor';
-          }
-
-          // Three.js - daha conservative chunking
-          if (id.includes('three')) {
-            return 'three-core';
-          }
-
-          // React Three utilities
-          if (id.includes('@react-three')) {
-            return 'three-utils';
-          }
-
-          // GSAP animasyonları ayrı chunk
-          if (id.includes('gsap')) {
-            return 'animation-vendor';
-          }
-
-          // Diğer utilities
-          if (id.includes('react-countup') || id.includes('react-responsive') || id.includes('@emailjs/browser')) {
-            return 'utils-vendor';
-          }
-
-          // Node modules'teki diğer büyük paketler
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
+        manualChunks: {
+          // Simple chunking strategy
+          'react-vendor': ['react', 'react-dom'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
+          'animation-vendor': ['gsap'],
+          'utils-vendor': ['react-countup', 'react-responsive', '@emailjs/browser']
         }
       }
     },
-    chunkSizeWarningLimit: 1000, // Increase limit
+    chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei', 'gsap'],
-    force: true, // Force re-optimization
+    include: ['three', '@react-three/fiber', '@react-three/drei', 'gsap', 'react', 'react-dom'],
+    force: true,
   },
   assetsInclude: ['**/*.glb', '**/*.gltf'],
 })
