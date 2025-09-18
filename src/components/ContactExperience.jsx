@@ -1,48 +1,17 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { memo, Suspense, useState, useRef, useEffect } from "react";
+import { memo, Suspense } from "react";
 
 import { Computer } from "./Models/Computer-optimized";
 
 const ContactExperience = memo(() => {
-    const [isVisible, setIsVisible] = useState(false);
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
-            },
-            { threshold: 0.1 }
-        );
-
-        const currentRef = canvasRef.current;
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
-
-        return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
-        };
-    }, []);
-
     return (
-        <div ref={canvasRef} className="w-full h-full">
-            <Canvas 
-                shadows 
-                camera={{ position: [0, 3, 7], fov: 45 }}
-                dpr={Math.min(window.devicePixelRatio, 2)}
-                performance={{ min: 0.5 }}
-                frameloop={isVisible ? 'always' : 'never'}
-                gl={{
-                    antialias: false,
-                    powerPreference: "high-performance",
-                    preserveDrawingBuffer: false,
-                    alpha: false
-                }}
-            >
+        <Canvas
+            shadows
+            camera={{ position: [0, 3, 7], fov: 45 }}
+            dpr={Math.min(window.devicePixelRatio, 2)}
+            performance={{ min: 0.5 }}
+        >
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} color="#fff4e6" />
 
@@ -79,7 +48,6 @@ const ContactExperience = memo(() => {
                 </group>
             </Suspense>
         </Canvas>
-        </div>
     );
 });
 
