@@ -12,13 +12,14 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false, // Keep console for debugging
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info'],
-        passes: 2,
+        pure_funcs: ['console.log'],
+        passes: 1, // Reduce passes to prevent over-optimization
       },
       mangle: {
-        toplevel: true,
+        toplevel: false, // Disable toplevel mangling for Three.js compatibility
+        keep_fnames: true, // Keep function names for Three.js
       },
     },
     rollupOptions: {
@@ -29,19 +30,14 @@ export default defineConfig({
             return 'react-vendor';
           }
 
-          // Three.js core ayrı chunk  
-          if (id.includes('three/build/three.module.js') || id.includes('three/src')) {
+          // Three.js - daha conservative chunking
+          if (id.includes('three')) {
             return 'three-core';
           }
 
-          // Three.js utilities ve loaders ayrı chunk
-          if (id.includes('@react-three/fiber') || id.includes('@react-three/drei')) {
+          // React Three utilities
+          if (id.includes('@react-three')) {
             return 'three-utils';
-          }
-
-          // Post-processing ayrı chunk (opsiyonel yükleme için)
-          if (id.includes('@react-three/postprocessing')) {
-            return 'three-postprocessing';
           }
 
           // GSAP animasyonları ayrı chunk
@@ -61,11 +57,11 @@ export default defineConfig({
         }
       }
     },
-    chunkSizeWarningLimit: 800, // Daha sıkı limit
+    chunkSizeWarningLimit: 1000, // Increase limit
   },
   optimizeDeps: {
     include: ['three', '@react-three/fiber', '@react-three/drei', 'gsap'],
-    exclude: ['@react-three/postprocessing'], // İhtiyaç halinde lazy load
+    force: true, // Force re-optimization
   },
   assetsInclude: ['**/*.glb', '**/*.gltf'],
 })
