@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import AnimatedCounter from '../components/AnimatedCounter'
 
-// Lazy load the heavy 3D component
+
 const HeroExperience = lazy(() => import('../components/HeroModels/HeroExperience'))
 
 const Hero = memo(() => {

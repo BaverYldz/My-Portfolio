@@ -63,14 +63,14 @@ const AppShowcase = memo(() => {
 
                     <div className="project-list-wrapper overflow-hidden">
                         <div className="project" ref={libraryRef}>
-                            <div className="image-wrapper bg-[#F5F0FF]">
+                            <div className="image-wrapper bg-[#fdf6e3]">
                                 <OptimizedImage
                                     src="/images/project_2.png"
                                     alt="Library Management Platform"
                                     className="w-full h-full object-contain rounded-xl"
                                 />
                             </div>
-                            <h2>Machine Learning-Powered Fake Message Detection Web App</h2>
+                            <h2>A sleek full-stack notes experience, powered by MERN and Next.js.</h2>
                         </div>
 
                         <div className="project" ref={ycDirectoryRef}>
