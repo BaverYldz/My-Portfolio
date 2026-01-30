@@ -1,41 +1,60 @@
 import React from 'react'
+import TitleHeader from '../components/TitleHeader'
 
 const Resume = () => {
     return (
-        <div id='resume' className='mt-10 flex-center'>
-            <div className='flex flex-col items-center gap-5'>
-                <div className='font-semibold md:text-4xl text-2xl text-center mt-2'>
-                    My Resume
-                </div>
+        <section id='resume' className='px-5 md:px-10 py-24 relative overflow-hidden'>
+            {/* Background Glow - Simplified */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[80px] pointer-events-none" />
 
-                <div className='flex flex-col sm:flex-row gap-4 mt-6'>
+            <TitleHeader title="My Resume" sub="Quick Look" />
 
-                    <a
-                        href="/cv/CV-BawerTR.pdf"
-                        download="Baver_Yildiz_CV_TR.pdf"
-                        className="group relative inline-flex items-center justify-center px-6 py-3 bg-black-100 backdrop-blur-sm text-white rounded-lg border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105 min-w-[160px]"
-                    >
-                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+            <div className='flex flex-col md:flex-row gap-8 justify-center max-w-5xl mx-auto mt-16 relative z-10'>
+                <a
+                    href="/cv/OmerCV_TR.pdf"
+                    download="Omer_Yildiz_CV_TR.pdf"
+                    className="flex-1 group relative p-10 bg-white/[0.03] backdrop-blur-lg border border-white/10 rounded-3xl hover:border-white/30 transition-all duration-500 shadow-2xl flex flex-col items-center gap-6 text-center"
+                >
+                    {/* Spotlight Hover Effect */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                        <span className="font-medium text-white/80">CV Türkçe</span>
-                    </a>
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold text-white mb-3">CV Türkçe</h3>
+                        <div className="text-white/40 font-medium tracking-wider uppercase text-xs flex items-center justify-center gap-3">
+                            <span>Download PDF</span>
+                            <div className="w-8 h-px bg-white/20 group-hover:w-12 transition-all duration-500" />
+                        </div>
+                    </div>
+                </a>
 
+                <a
+                    href="/cv/OmerCV_EN.pdf"
+                    download="Omer_Yildiz_CV_EN.pdf"
+                    className="flex-1 group relative p-10 bg-white/[0.03] backdrop-blur-lg border border-white/10 rounded-3xl hover:border-white/30 transition-all duration-500 shadow-2xl flex flex-col items-center gap-6 text-center"
+                >
+                    {/* Spotlight Hover Effect */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                    <a
-                        href="/cv/CV-BawerENG.pdf"
-                        download="Baver_Yildiz_CV_EN.pdf"
-                        className="group relative inline-flex items-center justify-center px-6 py-3 bg-black-100 backdrop-blur-sm text-white rounded-lg border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105 min-w-[160px]"
-                    >
-                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                    <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500">
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                        <span className="font-medium text-white/80">CV English</span>
-                    </a>
-                </div>
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold text-white mb-3">CV English</h3>
+                        <div className="text-white/40 font-medium tracking-wider uppercase text-xs flex items-center justify-center gap-3">
+                            <span>Download PDF</span>
+                            <div className="w-8 h-px bg-white/20 group-hover:w-12 transition-all duration-500" />
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-
+        </section>
     )
 }
 

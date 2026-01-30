@@ -3,7 +3,10 @@ import { socialImgs } from '../constants'
 
 const Footer = () => {
     return (
-        <footer className='footer'>
+        <footer className='footer relative pt-5'>
+            {/* Top Border Line */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
             <div className='footer-container'>
                 <div className='flex flex-col justify-center md:items-start items-center'>
                     <a href='/'>Terms & Conditions</a>

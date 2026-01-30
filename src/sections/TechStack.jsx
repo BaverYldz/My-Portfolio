@@ -1,68 +1,32 @@
 import React, { memo } from 'react'
-import TitleHeader from '../components/TitleHeader'
-import { gsap } from 'gsap'
-import { useGSAP } from '@gsap/react'
 import { techStackImgs } from '../constants/index'
-import OptimizedImage from '../components/OptimizedImage'
-
-const TechStackCard = memo(({ techStackIcon }) => (
-    <div className="tech-card-simple">
-        <div className="tech-icon-simple">
-            <OptimizedImage
-                src={techStackIcon.imgPath}
-                alt={techStackIcon.name}
-                className="w-8 h-8 object-contain"
-                loading="lazy"
-            />
-        </div>
-        <span className="tech-name-simple">{techStackIcon.name}</span>
-    </div>
-));
-
-TechStackCard.displayName = 'TechStackCard';
+import TitleHeader from '../components/TitleHeader'
 
 const TechStack = memo(() => {
-    useGSAP(() => {
-        gsap.fromTo('.tech-card-simple',
-            { opacity: 0, y: 20 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: 'power2.out',
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: '#skills',
-                    start: 'top 70%',
-                    once: true,
-                }
-            }
-        );
-    }, []);
-
     return (
-        <div id='skills' className='section-padding flex-center'>
-            <div className='w-full max-w-6xl mx-auto px-5 md:px-10'>
-                <TitleHeader
-                    title="Tech Stack"
-                    sub="Technologies I work with"
-                />
-
-                <div className='tech-grid-simple mt-12'>
-                    {techStackImgs.map((techStackIcon) => (
-                        <TechStackCard
-                            key={techStackIcon.name}
-                            techStackIcon={techStackIcon}
-                        />
+        <section className='w-full py-10 overflow-hidden flex flex-col items-center justify-center gap-5' id="skills">
+            <TitleHeader title="My Tech Stack" sub="Skills" />
+            <div className='flex w-full max-w-[1600px] mx-auto overflow-hidden relative after:content-[""] after:absolute after:top-0 after:left-0 after:w-20 after:h-full after:bg-gradient-to-r after:from-black after:to-transparent after:z-10 before:content-[""] before:absolute before:top-0 before:right-0 before:w-20 before:h-full before:bg-gradient-to-l before:from-black before:to-transparent before:z-10'>
+                <div className='flex gap-4 animate-marquee whitespace-nowrap items-center w-max'>
+                    {/* Render the list twice for seamless loop - ensuring enough content */}
+                    {[...techStackImgs, ...techStackImgs].map((tech, index) => (
+                        <div key={`${tech.name}-${index}`} className='flex items-center gap-2 px-4 py-2 transition-all duration-300 hover:scale-110 cursor-pointer group'>
+                            <div className='w-13 h-13 flex items-center justify-center'>
+                                <img
+                                    src={tech.imgPath}
+                                    alt={tech.name}
+                                    className='w-full h-full object-contain brightness-0 invert transition-all duration-300 group-hover:filter-none'
+                                />
+                            </div>
+                            <span className='text-white text-base font-medium transition-colors duration-300'>{tech.name}</span>
+                        </div>
                     ))}
                 </div>
             </div>
-        </div>
-
-
+        </section>
     )
-});
+})
 
-TechStack.displayName = 'TechStack';
+TechStack.displayName = 'TechStack'
 
 export default TechStack

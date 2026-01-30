@@ -4,7 +4,7 @@ import React, { memo, Suspense, useState, useRef, useEffect } from 'react'
 import { useMediaQuery } from 'react-responsive';
 import { Room } from './Room'
 import HeroLights from './HeroLights';
-import Particles from './Particles';
+
 import { usePerformance } from '../../hooks/usePerformance';
 
 
@@ -53,37 +53,39 @@ const HeroExperience = memo(() => {
                 frameloop={isVisible ? 'always' : 'never'}
                 gl={{
                     antialias: !isLowPerformance,
-                    alpha: false,
+                    alpha: true,
                     powerPreference: "high-performance",
                     preserveDrawingBuffer: false
                 }}
             >
-            <Suspense fallback={null}>
-                <OrbitControls
-                    enablePan={false}
-                    enableZoom={!isTablet}
-                    maxDistance={20}
-                    minDistance={5}
-                    minPolarAngle={Math.PI / 5}
-                    maxPolarAngle={Math.PI / 2}
-                    enableDamping
-                    dampingFactor={0.05}
-                />
+                <Suspense fallback={null}>
+                    <OrbitControls
+                        enablePan={false}
+                        enableZoom={false}
+                        maxDistance={20}
+                        minDistance={5}
+                        minPolarAngle={Math.PI / 5}
+                        maxPolarAngle={Math.PI / 2}
+                        enableDamping
+                        dampingFactor={0.05}
+                    />
 
-                {!isLowPerformance && <HeroLights />}
+                    {!isLowPerformance && <HeroLights />}
 
-                {/* Particles effect - only for better performance devices */}
-                {!isLowPerformance && <Particles count={150} />}
+                    {/* Fallback light for low performance mode */}
+                    {isLowPerformance && <ambientLight intensity={1} />}
 
-                <group
-                    scale={isMobile ? 0.7 : 1}
-                    position={[0, -3.5, 0]}
-                    rotation={[0, -Math.PI / 4, 0]}
-                >
-                    <Room />
-                </group>
-            </Suspense>
-        </Canvas>
+
+
+                    <group
+                        scale={isMobile ? 0.7 : 1}
+                        position={[0, -3.5, 0]}
+                        rotation={[0, -Math.PI / 4, 0]}
+                    >
+                        <Room isLowPerformance={isLowPerformance} />
+                    </group>
+                </Suspense>
+            </Canvas>
         </div>
     )
 });

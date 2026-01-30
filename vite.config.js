@@ -21,7 +21,7 @@ export default defineConfig({
         }
       }
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1600,
   },
   optimizeDeps: {
     include: ['three', '@react-three/fiber', '@react-three/drei', 'gsap', 'react', 'react-dom'],

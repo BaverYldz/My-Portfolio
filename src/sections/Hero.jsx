@@ -1,14 +1,20 @@
-import React, { memo, lazy, Suspense } from 'react'
-import { words } from '../constants'
+import React, { memo, lazy, Suspense, useState, useEffect } from 'react'
+import CanvasLoader from '../components/CanvasLoader'
+
 import Button from '../components/Button'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import AnimatedCounter from '../components/AnimatedCounter'
+
 
 
 const HeroExperience = lazy(() => import('../components/HeroModels/HeroExperience'))
+import RotatingText from '../components/RotatingText'
+import { rotatingTextWords } from '../constants'
+
 
 const Hero = memo(() => {
+    const [showExperience, setShowExperience] = useState(false);
+
     useGSAP(() => {
         gsap.fromTo(
             ".hero-text h1",
@@ -17,46 +23,41 @@ const Hero = memo(() => {
         );
     });
 
+    useEffect(() => {
+        // Defer 3D model loading to prioritize text animation
+        const timer = setTimeout(() => {
+            setShowExperience(true);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <section id='hero' className='relative overflow-hidden'>
-            <div className='absolute top-0 left-0 z-10'>
+            {/* <div className='absolute top-0 left-0 z-10'>
                 <img src='/images/bg.png' alt='background' />
-            </div>
+            </div> */}
 
             <div className='hero-layout'>
                 {/* Left Section*/}
-                <header className='flex flex-col justify-center md:w-full w-screen md:px-20 px-5'>
-                    <div className='flex flex-col gap-7'>
+                <header className='flex flex-col justify-center md:w-full w-screen md:px-35 px-5'>
+                    <div className='flex flex-col gap-5'>
                         <div className="hero-text">
                             <h1>
-                                Shaping
-                                <span className="slide">
-                                    <span className="wrapper">
-                                        {words.map((word, index) => (
-                                            <span
-                                                key={index}
-                                                className="flex items-center md:gap-3 gap-1 pb-2"
-                                            >
-                                                <img
-                                                    src={word.imgPath}
-                                                    alt="person"
-                                                    className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
-                                                />
-                                                <span>{word.text}</span>
-                                            </span>
-                                        ))}
-                                    </span>
-                                </span>
+                                Hi! I'm Omer Bawer.
+
                             </h1>
-                            <h1>into Real Projects</h1>
-                            <h1>that Deliver Results</h1>
+                            <h1>a Software Engineer</h1>
+                            <h1>that crafting <RotatingText words={rotatingTextWords} /><br />web experiences</h1>
+
                         </div>
                         <p className='text-white-50 md:text-xl relative z-10 pointer-events-none'>
-                            Hi, I'm Baver, a developer based in Turkiye with a passion for code.
+                            Turning ideas into scalable, production-ready web products.
+
                         </p>
                         <Button
-                            className='md:w-80 md:h-16 w-60 h-12'
-                            id='button'
+                            className='md:w-80 md:h-16 w-64 mt-3'
+                            href='#work'
                             text='See my Work'
                         />
                     </div>
@@ -66,14 +67,14 @@ const Hero = memo(() => {
                 {/* Right Section */}
                 <figure>
                     <div className='hero-3d-layout'>
-                        <Suspense >
-                            <HeroExperience />
+                        <Suspense fallback={<CanvasLoader />}>
+                            {showExperience && <HeroExperience />}
                         </Suspense>
                     </div>
                 </figure>
             </div>
 
-            <AnimatedCounter />
+
         </section>
     )
 });

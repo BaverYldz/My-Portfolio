@@ -57,14 +57,14 @@ const Contact = () => {
 
     return (
         <section id="contact" className="flex-center section-padding">
-            <div className="w-full h-full md:px-10 px-5">
+            <div className="w-full h-full md:px-10 px-5 max-w-[1600px] mx-auto">
                 <TitleHeader
                     title="Get in Touch – Let’s Connect"
-                    sub="💬 Have questions or ideas? Let’s talk! 🚀"
+                    sub="Contact"
                 />
                 <div className="grid-12-cols mt-16">
                     <div className="xl:col-span-5">
-                        <div className="flex-center card-border rounded-xl p-10">
+                        <div className="flex-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-10">
                             <form
                                 ref={formRef}
                                 onSubmit={handleSubmit}
@@ -115,14 +115,13 @@ const Contact = () => {
                                     </div>
                                 )}
 
-                                <button type="submit" disabled={loading}>
-                                    <div className="cta-button group">
-                                        <div className="bg-circle" />
+                                <button type="submit" disabled={loading} className="cta-wrapper group w-full outline-none">
+                                    <div className="cta-button w-full">
                                         <p className="text">
                                             {loading ? "Sending..." : "Send Message"}
                                         </p>
                                         <div className="arrow-wrapper">
-                                            <img src="/images/arrow-down.svg" alt="arrow" />
+                                            <img src="/images/arrow-down.svg" alt="arrow" className="-rotate-90" />
                                         </div>
                                     </div>
                                 </button>
