@@ -11,8 +11,8 @@ const Resume = () => {
 
             <div className='flex flex-col md:flex-row gap-8 justify-center max-w-5xl mx-auto mt-16 relative z-10'>
                 <a
-                    href="/cv/OmerCV_TR.pdf"
-                    download="Omer_Yildiz_CV_TR.pdf"
+                    href="/cv/OmerCV-Turkce.pdf"
+                    download="OmerCV-Turkce.pdf"
                     className="flex-1 group relative p-10 bg-white/[0.03] backdrop-blur-lg border border-white/10 rounded-3xl hover:border-white/30 transition-all duration-500 shadow-2xl flex flex-col items-center gap-6 text-center"
                 >
                     {/* Spotlight Hover Effect */}
@@ -33,8 +33,8 @@ const Resume = () => {
                 </a>
 
                 <a
-                    href="/cv/OmerCV_EN.pdf"
-                    download="Omer_Yildiz_CV_EN.pdf"
+                    href="/cv/OmerCV-English.pdf"
+                    download="OmerCV-English.pdf"
                     className="flex-1 group relative p-10 bg-white/[0.03] backdrop-blur-lg border border-white/10 rounded-3xl hover:border-white/30 transition-all duration-500 shadow-2xl flex flex-col items-center gap-6 text-center"
                 >
                     {/* Spotlight Hover Effect */}
